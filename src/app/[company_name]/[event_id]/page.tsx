@@ -277,8 +277,8 @@ export default function EventRegistrationPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12">
-      <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="min-h-screen bg-gray-900 py-12">
+      <div className="max-w-md mx-auto bg-gray-800 rounded-lg shadow-md overflow-hidden">
         {eventImage && (
           <div className="w-full h-64 relative">
             <Image
@@ -291,10 +291,10 @@ export default function EventRegistrationPage() {
         )}
         
         <div className="p-8">
-          <h1 className="text-3xl font-bold text-center mb-2">
+          <h1 className="text-3xl font-bold text-center mb-2 text-white">
             {eventId}
           </h1>
-          <h2 className="text-xl text-gray-600 text-center mb-8">
+          <h2 className="text-xl text-gray-400 text-center mb-8">
             Hosted by {companyName}
           </h2>
           
@@ -312,25 +312,25 @@ export default function EventRegistrationPage() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
                   {error}
                 </div>
               )}
               
-              <div className="mb-4">
+              <div>
                 <label
                   htmlFor="name"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-yellow-400 text-sm font-bold mb-2 flex items-center"
                 >
-                  Full Name
+                  Name <span className="ml-1 text-yellow-500">👤</span>
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
                   value={formData.name}
                   onChange={handleChange}
                   disabled={submitting}
@@ -338,18 +338,18 @@ export default function EventRegistrationPage() {
                 />
               </div>
               
-              <div className="mb-4">
+              <div>
                 <label
                   htmlFor="phone"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-yellow-400 text-sm font-bold mb-2 flex items-center"
                 >
-                  Phone Number
+                  Phone Number <span className="ml-1 text-red-500">1</span>
                 </label>
                 <input
                   type="tel"
                   id="phone"
                   name="phone"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
                   value={formData.phone}
                   onChange={handleChange}
                   disabled={submitting}
@@ -357,10 +357,10 @@ export default function EventRegistrationPage() {
                 />
               </div>
               
-              <div className="mb-4">
+              <div>
                 <label
                   htmlFor="email"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-yellow-400 text-sm font-bold mb-2"
                 >
                   Email
                 </label>
@@ -368,7 +368,7 @@ export default function EventRegistrationPage() {
                   type="email"
                   id="email"
                   name="email"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
                   value={formData.email}
                   onChange={handleChange}
                   disabled={submitting}
@@ -376,39 +376,62 @@ export default function EventRegistrationPage() {
                 />
               </div>
               
-              <div className="mb-4">
-                <label
-                  htmlFor="gender"
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                >
-                  Gender
-                </label>
-                <select
-                  id="gender"
-                  name="gender"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  value={formData.gender}
-                  onChange={handleChange}
-                  disabled={submitting}
-                  required
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
+              <div className="flex justify-between space-x-4">
+                <div className="w-1/2">
+                  <label
+                    htmlFor="gender"
+                    className="block text-yellow-400 text-sm font-bold mb-2"
+                  >
+                    Academic Level
+                  </label>
+                  <select
+                    id="status"
+                    name="status"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
+                    value={formData.status}
+                    onChange={handleChange}
+                    disabled={submitting}
+                    required
+                  >
+                    <option value="student">Student</option>
+                    <option value="graduate">Graduate</option>
+                  </select>
+                </div>
+                
+                <div className="w-1/2">
+                  <label
+                    htmlFor="gender"
+                    className="block text-yellow-400 text-sm font-bold mb-2"
+                  >
+                    Gender
+                  </label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
+                    value={formData.gender}
+                    onChange={handleChange}
+                    disabled={submitting}
+                    required
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
               </div>
               
-              <div className="mb-4">
+              <div>
                 <label
                   htmlFor="college"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-yellow-400 text-sm font-bold mb-2 flex items-center"
                 >
-                  College
+                  College & University <span className="ml-1">🎓</span>
                 </label>
                 <input
                   type="text"
                   id="college"
                   name="college"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
                   value={formData.college}
                   onChange={handleChange}
                   disabled={submitting}
@@ -416,57 +439,37 @@ export default function EventRegistrationPage() {
                 />
               </div>
               
-              <div className="mb-4">
-                <label
-                  htmlFor="status"
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                >
-                  Status
-                </label>
-                <select
-                  id="status"
-                  name="status"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  value={formData.status}
-                  onChange={handleChange}
-                  disabled={submitting}
-                  required
-                >
-                  <option value="student">Student</option>
-                  <option value="graduate">Graduate</option>
-                </select>
-              </div>
-              
-              <div className="mb-6">
+              <div>
                 <label
                   htmlFor="nationalId"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-yellow-400 text-sm font-bold mb-2 flex items-center"
                 >
-                  National ID
+                  National ID <span className="ml-1">🪪</span>
                 </label>
                 <input
                   type="text"
                   id="nationalId"
                   name="nationalId"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
                   value={formData.nationalId}
                   onChange={handleChange}
                   disabled={submitting}
                   required
                 />
-                <p className="text-xs text-gray-500 mt-1">
-                  Your National ID will only be visible to administrators.
-                </p>
               </div>
               
-              <div className="flex items-center justify-center">
+              <div className="pt-4">
                 <button
                   type="submit"
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline w-full max-w-xs"
+                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-full"
                   disabled={submitting}
                 >
-                  {submitting ? 'Submitting...' : 'Register for Event'}
+                  {submitting ? 'Submitting...' : 'Submit Registration ✨'}
                 </button>
+              </div>
+              
+              <div className="text-center text-xs text-gray-400 mt-4">
+                &copy; 2025 All rights reserved
               </div>
             </form>
           )}
