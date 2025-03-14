@@ -277,145 +277,162 @@ export default function EventRegistrationPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 py-12">
-      <div className="max-w-md mx-auto bg-gray-800 rounded-lg shadow-md overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-purple-900 via-indigo-900 to-blue-900 py-12">
+      <div className="max-w-md mx-auto bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-purple-500">
         {eventImage && (
-          <div className="w-full h-64 relative">
+          <div className="w-full h-72 relative">
             <Image
               src={eventImage}
               alt={`${companyName} - ${eventId} Event`}
               fill
               className="object-cover"
+              priority
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
+              <h1 className="text-3xl font-bold text-white text-shadow mb-1">
+                {eventId} ✨
+              </h1>
+              <h2 className="text-lg text-gray-300 text-shadow">
+                Hosted by {companyName} 🚀
+              </h2>
+            </div>
           </div>
         )}
         
         <div className="p-8">
-          <h1 className="text-3xl font-bold text-center mb-2 text-white">
-            {eventId}
-          </h1>
-          <h2 className="text-xl text-gray-400 text-center mb-8">
-            Hosted by {companyName}
-          </h2>
+          {!eventImage && (
+            <>
+              <h1 className="text-3xl font-bold text-center mb-2 text-white">
+                {eventId} ✨
+              </h1>
+              <h2 className="text-xl text-gray-400 text-center mb-8">
+                Hosted by {companyName} 🚀
+              </h2>
+            </>
+          )}
           
           {success ? (
             <div className="text-center">
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-                <p className="font-bold">Registration Successful!</p>
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl mb-6">
+                <p className="font-bold">🎉 Registration Successful! 🎉</p>
                 <p>Thank you for registering for this event.</p>
               </div>
               <button
                 onClick={() => setSuccess(false)}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-2 px-4 rounded-xl"
               >
-                Register Another Person
+                Register Another Person 👥
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {error && (
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-                  {error}
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mb-6">
+                  ❌ {error}
                 </div>
               )}
               
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-yellow-400 text-sm font-bold mb-2 flex items-center"
+                  className="block text-pink-400 text-sm font-bold mb-2 flex items-center"
                 >
-                  Name <span className="ml-1 text-yellow-500">👤</span>
+                  Name <span className="ml-1 text-pink-300">👤</span>
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border border-purple-500 rounded-xl w-full py-3 px-4 bg-gray-800 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   value={formData.name}
                   onChange={handleChange}
                   disabled={submitting}
                   required
+                  placeholder="Your name here"
                 />
               </div>
               
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-yellow-400 text-sm font-bold mb-2 flex items-center"
+                  className="block text-pink-400 text-sm font-bold mb-2 flex items-center"
                 >
-                  Phone Number <span className="ml-1 text-red-500">1</span>
+                  Phone Number <span className="ml-1 text-pink-300">📱</span>
                 </label>
                 <input
                   type="tel"
                   id="phone"
                   name="phone"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border border-purple-500 rounded-xl w-full py-3 px-4 bg-gray-800 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   value={formData.phone}
                   onChange={handleChange}
                   disabled={submitting}
                   required
+                  placeholder="Your phone number"
                 />
               </div>
               
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-yellow-400 text-sm font-bold mb-2"
+                  className="block text-pink-400 text-sm font-bold mb-2 flex items-center"
                 >
-                  Email
+                  Email <span className="ml-1 text-pink-300">📧</span>
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border border-purple-500 rounded-xl w-full py-3 px-4 bg-gray-800 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   value={formData.email}
                   onChange={handleChange}
                   disabled={submitting}
                   required
+                  placeholder="your.email@example.com"
                 />
               </div>
               
               <div className="flex justify-between space-x-4">
                 <div className="w-1/2">
                   <label
-                    htmlFor="gender"
-                    className="block text-yellow-400 text-sm font-bold mb-2"
+                    htmlFor="status"
+                    className="block text-pink-400 text-sm font-bold mb-2 flex items-center"
                   >
-                    Academic Level
+                    Academic Level <span className="ml-1 text-pink-300">📚</span>
                   </label>
                   <select
                     id="status"
                     name="status"
-                    className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none border border-purple-500 rounded-xl w-full py-3 px-4 bg-gray-800 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     value={formData.status}
                     onChange={handleChange}
                     disabled={submitting}
                     required
                   >
-                    <option value="student">Student</option>
-                    <option value="graduate">Graduate</option>
+                    <option value="student">Student 🎓</option>
+                    <option value="graduate">Graduate 🧑‍🎓</option>
                   </select>
                 </div>
                 
                 <div className="w-1/2">
                   <label
                     htmlFor="gender"
-                    className="block text-yellow-400 text-sm font-bold mb-2"
+                    className="block text-pink-400 text-sm font-bold mb-2 flex items-center"
                   >
-                    Gender
+                    Gender <span className="ml-1 text-pink-300">👫</span>
                   </label>
                   <select
                     id="gender"
                     name="gender"
-                    className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none border border-purple-500 rounded-xl w-full py-3 px-4 bg-gray-800 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     value={formData.gender}
                     onChange={handleChange}
                     disabled={submitting}
                     required
                   >
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="male">Male 👨</option>
+                    <option value="female">Female 👩</option>
                   </select>
                 </div>
               </div>
@@ -423,53 +440,55 @@ export default function EventRegistrationPage() {
               <div>
                 <label
                   htmlFor="college"
-                  className="block text-yellow-400 text-sm font-bold mb-2 flex items-center"
+                  className="block text-pink-400 text-sm font-bold mb-2 flex items-center"
                 >
-                  College & University <span className="ml-1">🎓</span>
+                  College & University <span className="ml-1 text-pink-300">🏫</span>
                 </label>
                 <input
                   type="text"
                   id="college"
                   name="college"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border border-purple-500 rounded-xl w-full py-3 px-4 bg-gray-800 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   value={formData.college}
                   onChange={handleChange}
                   disabled={submitting}
                   required
+                  placeholder="Your college/university"
                 />
               </div>
               
               <div>
                 <label
                   htmlFor="nationalId"
-                  className="block text-yellow-400 text-sm font-bold mb-2 flex items-center"
+                  className="block text-pink-400 text-sm font-bold mb-2 flex items-center"
                 >
-                  National ID <span className="ml-1">🪪</span>
+                  National ID <span className="ml-1 text-pink-300">🪪</span>
                 </label>
                 <input
                   type="text"
                   id="nationalId"
                   name="nationalId"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border border-purple-500 rounded-xl w-full py-3 px-4 bg-gray-800 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   value={formData.nationalId}
                   onChange={handleChange}
                   disabled={submitting}
                   required
+                  placeholder="Your national ID"
                 />
               </div>
               
-              <div className="pt-4">
+              <div className="pt-6">
                 <button
                   type="submit"
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-full"
+                  className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-bold py-4 px-6 rounded-xl w-full transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
                   disabled={submitting}
                 >
-                  {submitting ? 'Submitting...' : 'Submit Registration ✨'}
+                  {submitting ? 'Submitting...' : '✨ Submit Registration ✨'}
                 </button>
               </div>
               
-              <div className="text-center text-xs text-gray-400 mt-4">
-                &copy; 2025 All rights reserved
+              <div className="text-center text-xs text-gray-400 mt-6">
+                &copy; 2025 All rights reserved 💫
               </div>
             </form>
           )}
