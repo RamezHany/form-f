@@ -279,8 +279,8 @@ export default function EventRegistrationPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-900 via-indigo-900 to-blue-900 py-12">
       <div className="max-w-md mx-auto bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-purple-500">
-        {eventImage && (
-          <div className="w-full h-72 relative">
+        {eventImage ? (
+          <div className="w-full h-80 relative">
             <Image
               src={eventImage}
               alt={`${companyName} - ${eventId} Event`}
@@ -288,12 +288,23 @@ export default function EventRegistrationPage() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
-              <h1 className="text-3xl font-bold text-white text-shadow mb-1">
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-50"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
+              <h1 className="text-3xl font-bold text-white text-shadow mb-2 drop-shadow-lg">
                 {eventId} ✨
               </h1>
-              <h2 className="text-lg text-gray-300 text-shadow">
+              <h2 className="text-lg text-gray-200 text-shadow drop-shadow-lg">
+                Hosted by {companyName} 🚀
+              </h2>
+            </div>
+          </div>
+        ) : (
+          <div className="w-full h-40 bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+            <div className="text-center p-6">
+              <h1 className="text-3xl font-bold text-white text-shadow mb-2">
+                {eventId} ✨
+              </h1>
+              <h2 className="text-lg text-gray-200 text-shadow">
                 Hosted by {companyName} 🚀
               </h2>
             </div>
